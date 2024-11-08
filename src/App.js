@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Add from './components/add';
+import UpdateArticle from './components/update';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
             <Add />
           }
         />
+        <Route path="/update-article/:idArticle" element={<UpdateArticle />} />
       </Routes>
     </Router>
   );
