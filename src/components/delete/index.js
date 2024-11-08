@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import './indexdelete.css'
+import './index.css'
 
 function UpdateArticle() {
   const { idArticle } = useParams(); 
@@ -11,7 +11,7 @@ function UpdateArticle() {
         const response = await axios.delete(`http://localhost:8000/api/article/delete/${idArticle}`);
         console.log(response.status);
         alert('Larticle a été correctement supprimmé')
-        window.location.href="/article"
+        window.location.href="/"
     } catch (error) {
         console.log(error)
     }

@@ -4,13 +4,16 @@ import Add from './components/add';
 import UpdateArticle from './components/update';
 import Delete from './components/delete';
 import Article from "./components/show";
-import Varticle from "./components/show/varticle";
+import Varticle from './components/viewarticle/varticle';
 
 const App = () => {
   return (
     <Router>
       <Routes>
         {/* Routes pour pages principales */}
+        <Route index element={<Article/>}
+        />
+         
         <Route
           path="/add"
           element={
@@ -25,8 +28,6 @@ const App = () => {
             <Delete />
           }
         />
-        <Route path="/article/" 
-        element={<Article />} />
         <Route path="/article/varticle/:id" 
         element={
         <Varticle />} />

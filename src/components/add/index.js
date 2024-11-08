@@ -42,10 +42,12 @@ function Add() {
   const handleAdd = async () => {
     const data = await axios.post('http://localhost:8000/api/article/add', article);
     alert('Larticle a été correctement ajouté')
+    window.location.href="/"
   }
 
   return (
     <div className='Add'>
+      <h2>Ajouter un article</h2>
       <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
         <label>
           Nom:

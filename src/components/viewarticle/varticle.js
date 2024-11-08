@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import './index.css'
 
 const Varticle = () => {
   const [article, setArticle] = useState({});
@@ -23,7 +24,7 @@ const Varticle = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="varticlecontainer">
       <img src={article.imageUrl} alt="Article" />{" "}
       <p>
         Nom: {article.name} <br />

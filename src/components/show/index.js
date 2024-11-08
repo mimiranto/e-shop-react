@@ -78,13 +78,13 @@ const ArticleCard = ({ info }) => {
           <strong>Description :</strong> {info.content} <br />
           <strong>Prix :</strong> {info.price}
         </p>
-        <Link to={{ pathname: `varticle/${info._id}` }} className="image-link">
+        <Link to={{ pathname: `/article/varticle/${info._id}` }} className="image-link">
           <img src={icon} className="icon" />
         </Link>
-        <Link to={{ pathname: `update-article/${info._id}` }} className="image-link">
+        <Link to={{ pathname: `/article/update-article/${info._id}` }} className="image-link">
           <img src={icon1} className="icon" />
         </Link>
-        <Link to={{ pathname: `delete/${info._id}` }} className="image-link">
+        <Link to={{ pathname: `/article/delete/${info._id}` }} className="image-link">
           <img src={icon2} className="icon" />
         </Link>
       </div>
