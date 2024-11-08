@@ -17,10 +17,10 @@ const App = () => {
             <Add />
           }
         />
-        <Route path="/update-article/:idArticle" 
+        <Route path="/article/update-article/:idArticle" 
         element={<UpdateArticle />} />
         <Route
-          path="/delete/:idArticle"
+          path="/article/delete/:idArticle"
           element={
             <Delete />
           }

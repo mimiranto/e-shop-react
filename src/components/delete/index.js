@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import './indexdelete.css'
 
 function UpdateArticle() {
   const { idArticle } = useParams(); 
@@ -8,16 +9,18 @@ function UpdateArticle() {
   const handleDelete = async (indexTask) => {
     try {
         const response = await axios.delete(`http://localhost:8000/api/article/delete/${idArticle}`);
-        console.log(response.status)
+        console.log(response.status);
+        alert('Larticle a été correctement supprimmé')
+        window.location.href="/article"
     } catch (error) {
         console.log(error)
     }
   }
   return (
-    <div>
-      <h2>Mettre à jour l'article</h2>
+    <div className='deletecontainer'> 
+      <h2 className='deletetitre'>Supprimer l'article</h2>
       <div >
-          <p>
+          <p className='deleteid'>
               {idArticle}
             </p>
           <img 
