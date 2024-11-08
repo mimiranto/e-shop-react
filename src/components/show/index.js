@@ -5,6 +5,7 @@ import "./index.css";
 import icon from "../Asset/eye-solid.svg";
 import icon1 from "../Asset/wrench-solid.svg";
 import icon2 from "../Asset/trash-can-solid.svg";
+import icon3 from "../Asset/plus-solid.svg"
 
 const Article = () => {
   const [article, setData] = useState([]);
@@ -24,15 +25,21 @@ const Article = () => {
       }
     };
     fetcArticle();
-    // setData(mockData);
-    // console.log(article);
   }, []);
 
   return (
-    <div className="product-grid">
-      {article.map((info) => (
-        <ArticleCard key={info.id} info={info} />
-      ))}
+    <div className="page-accueil">
+      <div className="product-grid">
+        {article.map((info) => (
+          <ArticleCard key={info.id} info={info} />
+        ))}
+      </div>
+      {/* Image d'ajout affichée une seule fois */}
+      <div className="add">
+        <Link to={{ pathname: `/add` }} className="image-link">
+          <img src={icon3} className="icon" />
+        </Link>
+      </div>
     </div>
   );
 };
@@ -60,35 +67,37 @@ const ArticleCard = ({ info }) => {
   }, [isHovered, currentIndex]);
 
   return (
-    <div
-      className="article-card"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Affichage de l'image actuelle */}
-      <img
-        src={images[currentIndex]}
-        alt={`Image ${currentIndex}`}
-        className="article-image"
-      />
+    <>
+      <div
+        className="article-card"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Affichage de l'image actuelle */}
+        <img
+          src={images[currentIndex]}
+          alt={`Image ${currentIndex}`}
+          className="article-image"
+        />
 
-      <div className="product-info">
-        <h3 className="product-title">{info.name}</h3>
-        <p className="product-description">
-          <strong>Description :</strong> {info.content} <br />
-          <strong>Prix :</strong> {info.price}
-        </p>
-        <Link to={{ pathname: `/article/varticle/${info._id}` }} className="image-link">
-          <img src={icon} className="icon" />
-        </Link>
-        <Link to={{ pathname: `/article/update-article/${info._id}` }} className="image-link">
-          <img src={icon1} className="icon" />
-        </Link>
-        <Link to={{ pathname: `/article/delete/${info._id}` }} className="image-link">
-          <img src={icon2} className="icon" />
-        </Link>
+        <div className="product-info">
+          <h3 className="product-title">{info.name}</h3>
+          <p className="product-description">
+            <strong>Description :</strong> {info.content} <br />
+            <strong>Prix :</strong> {info.price}
+          </p>
+          <Link to={{ pathname: `/article/varticle/${info._id}` }} className="image-link">
+            <img src={icon} className="icon" />
+          </Link>
+          <Link to={{ pathname: `/article/update-article/${info._id}` }} className="image-link">
+            <img src={icon1} className="icon" />
+          </Link>
+          <Link to={{ pathname: `/article/delete/${info._id}` }} className="image-link">
+            <img src={icon2} className="icon" />
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
