@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import Delete from '../delete';
+
 
 function Add() {
 
@@ -25,6 +27,7 @@ function Add() {
   const handleAdd = async () => {
     const data = await axios.post('http://localhost:8000/api/article/add', article)
   }
+
 
   return (
     <div className='Add'>
