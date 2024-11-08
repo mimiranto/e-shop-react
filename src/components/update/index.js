@@ -28,6 +28,7 @@ function UpdateArticle() {
       try {
         const response = await axios.get(`http://localhost:8000/api/article/get/${idArticle}`);
         setArticle(response.data);
+        console.log(article)
       } catch (error) {
         console.error('Erreur lors de la récupération de l\'article:', error);
       }
