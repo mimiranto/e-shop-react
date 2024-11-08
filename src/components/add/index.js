@@ -1,37 +1,109 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import Delete from '../delete';
-
 
 function Add() {
 
   const [article, setArticle] = useState({
-    "name": "Example Product",
-    "category": "Electronics",
-    "brand": "TechBrand",
-    "price": 299.99,
-    "content": "This is an example product description.",
-    "stock": 150,
-    "online": true,
-    "picture": [
+    name: '',
+    category: '',
+    brand: '',
+    price: '',
+    content: '',
+    stock: '',
+    online: false,
+    picture: [
       {
-        "img": "https://example.com/image.jpg",
-        "img1": "https://example.com/image1.jpg",
-        "img2": "https://example.com/image2.jpg",
-        "img3": "https://example.com/image3.jpg",
-        "img4": "https://example.com/image4.jpg"
+        img: '',
+        img1: '',
+        img2: '',
+        img3: '',
+        img4: ''
       }
     ]
-  })
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setArticle((prevArticle) => ({
+      ...prevArticle,
+      [name]: value,
+    }));
+  };
+  const handlePictureChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedPictures = [...article.picture];
+    updatedPictures[0][name] = value;
+    setArticle(prevArticle => ({
+      ...prevArticle,
+      picture: updatedPictures
+    }));
+  };
 
   const handleAdd = async () => {
     const data = await axios.post('http://localhost:8000/api/article/add', article)
   }
 
-
   return (
     <div className='Add'>
-      <button onClick={handleAdd}>Add</button>
+      <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
+        <label>
+          Nom:
+          <input type="text" name="name" value={article.name} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          Catégorie:
+          <input type="text" name="category" value={article.category} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          Marque:
+          <input type="text" name="brand" value={article.brand} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          Prix:
+          <input type="number" name="price" value={article.price} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          Description:
+          <textarea name="content" value={article.content} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          Stock:
+          <input type="number" name="stock" value={article.stock} onChange={handleChange} />
+        </label><br />
+
+        <label>
+          En ligne:
+          <input type="checkbox" name="online" checked={article.online} onChange={(e) => setArticle(prev => ({ ...prev, online: e.target.checked }))} />
+        </label><br />
+
+        <h3>Images</h3>
+        <label>
+          Image principale:
+          <input type="text" name="img" value={article.picture[0]?.img || ''} onChange={(e) => handlePictureChange(e, 0)} />
+        </label><br />
+        <label>
+          Image 1:
+          <input type="text" name="img1" value={article.picture[0]?.img1 || ''} onChange={(e) => handlePictureChange(e, 0)} />
+        </label><br />
+        <label>
+          Image 2:
+          <input type="text" name="img2" value={article.picture[0]?.img2 || ''} onChange={(e) => handlePictureChange(e, 0)} />
+        </label><br />
+        <label>
+          Image 3:
+          <input type="text" name="img3" value={article.picture[0]?.img3 || ''} onChange={(e) => handlePictureChange(e, 0)} />
+        </label><br />
+        <label>
+          Image 4:
+          <input type="text" name="img4" value={article.picture[0]?.img4 || ''} onChange={(e) => handlePictureChange(e, 0)} />
+        </label><br />
+
+        <button type="submit"></button>
+      </form>
     </div>
   )
 }
