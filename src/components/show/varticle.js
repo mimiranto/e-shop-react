@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 const Varticle = () => {
-  const [viewarticle, setTab] = useState({});
+  const [article, setArticle] = useState({});
   const { id } = useParams();
   console.log(id);
 
@@ -14,7 +14,7 @@ const Varticle = () => {
           `http://localhost:8000/api/article/get/${id}`
         );
         console.log(data);
-        setTab(data);
+        setArticle(data);
       } catch (err) {
         console.error(err.message);
       }
@@ -24,11 +24,11 @@ const Varticle = () => {
 
   return (
     <div>
-      <img src={viewarticle.imageUrl} alt="Article" />{" "}
+      <img src={article.imageUrl} alt="Article" />{" "}
       <p>
-        Nom: {viewarticle.name} <br />
-        Mail: {viewarticle.email} <br />
-        Address: {viewarticle.street}
+        Nom: {article.name} <br />
+        Mail: {article.email} <br />
+        Address: {article.street}
       </p>
     </div>
   );

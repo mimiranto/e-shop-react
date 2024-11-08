@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { response } from 'express';
 
 function UpdateArticle() {
   const { idArticle } = useParams(); 
@@ -11,7 +10,7 @@ function UpdateArticle() {
         const response = await axios.delete(`http://localhost:8000/api/article/delete/${idArticle}`);
         console.log(response.status)
     } catch (error) {
-        console.log(response.status)
+        console.log(error)
     }
   }
   return (
